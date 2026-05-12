@@ -5,12 +5,6 @@
     <h1>Manage Experience</h1>
 </div>
 
-@if(session('success'))
-    <div class="card" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #22c55e;">
-        {{ session('success') }}
-    </div>
-@endif
-
 <div class="card">
     <form action="{{ route('admin.experiences.store') }}" method="POST">
         @csrf

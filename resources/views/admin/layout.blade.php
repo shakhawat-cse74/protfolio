@@ -9,15 +9,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    <!-- Dropify CSS -->
+    <!-- CDNs -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="admin-wrapper">
         <aside class="sidebar">
-            <div class="sidebar-brand">Portfolio Admin</div>
+            <div class="sidebar-brand" style="display: flex; justify-content: space-between; align-items: center;">
+                <span>Portfolio Admin</span>
+                <a href="{{ url('/') }}" target="_blank" title="View Site" style="color: var(--primary);"><i data-lucide="external-link" style="width: 18px;"></i></a>
+            </div>
             <nav>
                 <a href="{{ route('admin.dashboard') }}" class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                     <i data-lucide="layout-dashboard"></i> Dashboard
@@ -47,6 +53,12 @@
                     <i data-lucide="settings"></i> Settings
                 </a>
 
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                    <a href="{{ url('/') }}" target="_blank" class="nav-link" style="color: var(--primary);">
+                        <i data-lucide="globe"></i> View Live Site
+                    </a>
+                </div>
+
                 <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -68,6 +80,41 @@
         lucide.createIcons();
         $(document).ready(function() {
             $('.dropify').dropify();
+
+            // Toastr Configuration
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+            }
+
+            @if(session('success'))
+                toastr.success("{{ session('success') }}");
+            @endif
+
+            @if(session('error'))
+                toastr.error("{{ session('error') }}");
+            @endif
+
+            // Global SweetAlert for Delete
+            $(document).on('click', '.delete-btn', function(e) {
+                e.preventDefault();
+                let form = $(this).closest('form');
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#6366f1',
+                    cancelButtonColor: '#ef4444',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                })
+            });
         });
     </script>
 </body>

@@ -6,12 +6,6 @@
     <p style="color: var(--text-muted);">This information will be displayed on your portfolio landing page.</p>
 </div>
 
-@if(session('success'))
-    <div class="card" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #22c55e;">
-        {{ session('success') }}
-    </div>
-@endif
-
 <form action="{{ route('admin.personal-info.store') }}" method="POST" enctype="multipart/form-data" class="card">
     @csrf
     <div class="form-group" style="margin-bottom: 2rem;">

@@ -6,12 +6,6 @@
     <p style="color: var(--text-muted);">Add or remove skills from your portfolio.</p>
 </div>
 
-@if(session('success'))
-    <div class="card" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #22c55e;">
-        {{ session('success') }}
-    </div>
-@endif
-
 <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem;">
     <!-- Add Skill Form -->
     <form action="{{ route('admin.skills.store') }}" method="POST" class="card">
@@ -54,7 +48,7 @@
                         <form action="{{ route('admin.skills.destroy', $skill) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" style="background: none; border: none; color: #ef4444; cursor: pointer;">
+                            <button type="submit" class="delete-btn" style="background: none; border: none; color: #ef4444; cursor: pointer;">
                                 <i data-lucide="trash-2"></i>
                             </button>
                         </form>

@@ -6,12 +6,6 @@
     <p style="color: var(--text-muted);">Showcase your best work.</p>
 </div>
 
-@if(session('success'))
-    <div class="card" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; color: #22c55e;">
-        {{ session('success') }}
-    </div>
-@endif
-
 <div class="card">
     <h3>Add New Project</h3>
     <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
@@ -66,7 +60,7 @@
                     <form action="{{ route('admin.projects.destroy', $project) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" style="background: none; border: none; color: #ef4444; cursor: pointer;">
+                        <button type="submit" class="delete-btn" style="background: none; border: none; color: #ef4444; cursor: pointer;">
                             <i data-lucide="trash-2"></i>
                         </button>
                     </form>

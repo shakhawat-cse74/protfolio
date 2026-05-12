@@ -6,12 +6,6 @@
     <p>Manage your academic qualifications.</p>
 </div>
 
-@if(session('success'))
-    <div class="card" style="background: rgba(34, 197, 94, 0.2); border-color: #22c55e; margin-bottom: 1.5rem;">
-        {{ session('success') }}
-    </div>
-@endif
-
 <div class="card" style="margin-bottom: 2rem;">
     <h2>Add New Education</h2>
     <form action="{{ route('admin.education.store') }}" method="POST">
@@ -59,10 +53,10 @@
                     <td style="padding: 1rem;">{{ $edu->year }}</td>
                     <td style="padding: 1rem;">{{ $edu->result }}</td>
                     <td style="padding: 1rem; text-align: right;">
-                        <form action="{{ route('admin.education.destroy', $edu->id) }}" method="POST" onsubmit="return confirm('Are you sure?')">
+                        <form action="{{ route('admin.education.destroy', $edu->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" style="background: none; border: none; color: #ef4444; cursor: pointer;">
+                            <button type="submit" class="delete-btn" style="background: none; border: none; color: #ef4444; cursor: pointer;">
                                 <i data-lucide="trash-2"></i>
                             </button>
                         </form>
