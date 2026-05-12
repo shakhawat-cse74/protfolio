@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\EducationController;
+use App\Http\Controllers\Admin\TrainingController;
 
 Route::get('/', [PortfolioController::class, 'index']);
 
@@ -25,6 +27,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('experiences', ExperienceController::class)->only(['index', 'store', 'destroy']);
     Route::resource('services', ServiceController::class)->only(['index', 'store', 'destroy']);
     Route::resource('settings', SettingController::class)->only(['index', 'store']);
+    Route::resource('education', EducationController::class)->only(['index', 'store', 'destroy']);
+    Route::resource('trainings', TrainingController::class)->only(['index', 'store', 'destroy']);
 });
 
 require __DIR__.'/auth.php';

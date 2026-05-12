@@ -34,6 +34,12 @@
                 <a href="{{ route('admin.experiences.index') }}" class="nav-link {{ request()->routeIs('admin.experiences.*') ? 'active' : '' }}">
                     <i data-lucide="briefcase"></i> Experience
                 </a>
+                <a href="{{ route('admin.education.index') }}" class="nav-link {{ request()->routeIs('admin.education.*') ? 'active' : '' }}">
+                    <i data-lucide="graduation-cap"></i> Education
+                </a>
+                <a href="{{ route('admin.trainings.index') }}" class="nav-link {{ request()->routeIs('admin.trainings.*') ? 'active' : '' }}">
+                    <i data-lucide="medal"></i> Training
+                </a>
                 <a href="{{ route('admin.services.index') }}" class="nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
                     <i data-lucide="server"></i> Services
                 </a>
