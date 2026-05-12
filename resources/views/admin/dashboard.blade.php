@@ -28,7 +28,7 @@
 <div class="card" style="margin-top: 2rem;">
     <h2>Quick Actions</h2>
     <div style="display: flex; gap: 1rem;">
-        <a href="{{ route('admin.projects.create') }}" class="btn-primary" style="text-decoration: none;">Add New Project</a>
+        <a href="{{ route('admin.projects.index') }}" class="btn-primary" style="text-decoration: none;">Add New Project</a>
         <a href="{{ route('admin.personal-info.index') }}" class="btn-primary" style="text-decoration: none; background: rgba(255,255,255,0.1);">Edit Profile</a>
     </div>
 </div>

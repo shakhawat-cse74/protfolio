@@ -13,6 +13,10 @@ use App\Http\Controllers\Admin\SettingController;
 
 Route::get('/', [PortfolioController::class, 'index']);
 
+Route::get('/dashboard', function () {
+    return redirect()->route('admin.dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('personal-info', PersonalInfoController::class)->only(['index', 'store']);
